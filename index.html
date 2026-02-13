@@ -1,123 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To My Fiancé ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #1d2b64, #f8cdda);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forever With You ❤️</title>
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px;
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 500px;
-            position: relative;
-        }
+<!-- Elegant Script Font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
-        h1 {
-            color: #b21f1f;
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
+<style>
+* { box-sizing: border-box; }
 
-        p {
-            color: #444;
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 35px;
-        }
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+}
 
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
+/* Intro Screen */
+.intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    animation: introFade 3s ease forwards;
+}
 
-        button {
-            padding: 14px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.intro h2 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeText 2s ease 0.5s forwards;
+}
 
-        #yesBtn {
-            background-color: #b21f1f;
-            color: white;
-        }
+@keyframes introFade {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
 
-        #yesBtn:hover {
-            background-color: #8e1a1a;
-            transform: scale(1.05);
-        }
+@keyframes fadeText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        #noBtn {
-            background-color: #ddd;
-            color: #333;
-            position: relative;
-        }
+.card {
+    background: rgba(255,255,255,0.97);
+    padding: 50px 40px;
+    border-radius: 30px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    text-align: center;
+    max-width: 550px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 2s ease;
+}
 
-        .message {
-            margin-top: 25px;
-            font-weight: bold;
-            font-size: 18px;
-            color: #b21f1f;
-        }
+.name-reveal {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    color: #ff4d6d;
+    margin-bottom: 10px;
+    opacity: 0;
+    text-shadow: 0 0 15px rgba(255,77,109,0.8);
+    animation: nameFade 3s ease 2.5s forwards;
+}
 
-        .ring {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-    </style>
+@keyframes nameFade {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+h1 { color: #a4133c; font-size: 28px; margin-bottom: 20px; }
+
+p { color: #444; font-size: 18px; line-height: 1.8; margin-bottom: 35px; }
+
+.buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#yesBtn {
+    background: linear-gradient(45deg, #ff4d6d, #c9184a);
+    color: white;
+    box-shadow: 0 8px 25px rgba(201,24,74,0.5);
+}
+
+#yesBtn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(201,24,74,0.7);
+}
+
+#noBtn { background: #eee; color: #555; position: relative; }
+
+.message {
+    margin-top: 30px;
+    font-size: 20px;
+    color: #c9184a;
+    min-height: 40px;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.message.show {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(255,77,109,0.8),
+                 0 0 20px rgba(255,77,109,0.6);
+}
+
+.secret {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    font-size: 24px;
+    font-family: 'Great Vibes', cursive;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+    z-index: 20;
+}
+
+.secret.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ring {
+    font-size: 46px;
+    margin-bottom: 20px;
+    animation: pulse 3s infinite ease-in-out;
+    cursor: pointer;
+}
+
+.heart, .petal {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart { bottom: -20px; animation: floatUp 4s linear forwards; }
+.petal { top: -30px; animation: fall linear forwards; }
+
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
+@keyframes fall { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
+
+@media (max-width: 480px) {
+    .card { padding: 35px 25px; border-radius: 20px; }
+    h1 { font-size: 22px; }
+    p { font-size: 16px; }
+    .name-reveal { font-size: 36px; }
+    button { width: 100%; }
+    .buttons { flex-direction: column; gap: 15px; }
+}
+</style>
 </head>
 <body>
 
+<div class="intro">
+    <h2>For The Love Of My Life ❤️</h2>
+</div>
+
 <div class="card">
-    <div class="ring">💍</div>
-    <h1>To My Beautiful Fiancé</h1>
+    <div class="name-reveal">SAPNA</div>
+    <div class="ring" id="ring">💍</div>
+    <h1>My Forever Begins With You</h1>
     <p>
-        From the moment you came into my life, everything changed for the better.
-        You are my partner, my best friend, and my forever.
+        My love, every heartbeat of mine whispers your name.
+        Every dream I see has you in it.
+        You are not just my fiancé — you are my home, my peace,
+        and the most beautiful chapter of my life.
         
-        Will you continue choosing me every day,
-        just like I will always choose you?
+        Will you keep walking this journey with me,
+        hand in hand, heart to heart, forever?
     </p>
 
     <div class="buttons">
-        <button id="yesBtn">Always ❤️</button>
-        <button id="noBtn">Let Me Think 😅</button>
+        <button id="yesBtn">Forever & Always ❤️</button>
+        <button id="noBtn">You Wish 😄</button>
     </div>
 
     <div class="message" id="responseMessage"></div>
 </div>
 
+<div class="secret" id="secretMessage">
+    SAPNA ❤️<br><br>
+    No matter where life takes us,
+    I will choose you in every lifetime.
+    You are my destiny, my prayer,
+    and my forever love. 💖
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const message = document.getElementById('responseMessage');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const message = document.getElementById('responseMessage');
+const music = document.getElementById('bgMusic');
+const ring = document.getElementById('ring');
+const secret = document.getElementById('secretMessage');
 
-    yesBtn.addEventListener('click', () => {
-        message.textContent = "Forever starts again today. I love you endlessly. ❤️";
-    });
+// Start music on first interaction
+window.addEventListener('click', () => {
+    music.play().catch(() => {});
+}, { once: true });
 
-    noBtn.addEventListener('mouseover', () => {
-        const x = Math.floor(Math.random() * 150) - 75;
-        const y = Math.floor(Math.random() * 150) - 75;
-        noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    });
+// Secret message unlock (double click ring)
+ring.addEventListener('dblclick', () => {
+    secret.classList.add('show');
+});
+
+secret.addEventListener('click', () => {
+    secret.classList.remove('show');
+});
+
+function createPetal() {
+    const petal = document.createElement('div');
+    petal.classList.add('petal');
+    petal.innerHTML = '🌹';
+    petal.style.left = Math.random() * window.innerWidth + 'px';
+    petal.style.fontSize = (Math.random() * 10 + 18) + 'px';
+    petal.style.animationDuration = (Math.random() * 5 + 8) + 's';
+    document.body.appendChild(petal);
+    setTimeout(() => petal.remove(), 13000);
+}
+setInterval(createPetal, 1200);
+
+yesBtn.addEventListener('click', () => {
+    message.innerHTML = `
+        My love ❤️<br><br>
+        Choosing you was the best decision of my life.<br>
+        I promise to stand beside you in every storm,<br>
+        celebrate every joy with you,<br>
+        and love you more deeply with each passing day.<br><br>
+        You are my today, my tomorrow, and my forever. 💞
+    `;
+    message.classList.add('show');
+    launchHearts();
+});
+
+noBtn.addEventListener('mouseover', () => {
+    const x = Math.floor(Math.random() * 100) - 50;
+    const y = Math.floor(Math.random() * 100) - 50;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+function launchHearts() {
+    for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+}
 </script>
+
+<div class="signature">
+    Forever Yours,<br>
+    <span class="signature-name">Rahul</span>
+</div>
+
+<style>
+.signature {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 20px;
+    color: #a4133c;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeInSignature 3s ease forwards;
+    animation-delay: 3s;
+}
+
+.signature-name {
+    display: inline-block;
+    font-size: 28px;
+    font-family: 'Brush Script MT', cursive;
+    margin-top: 8px;
+    color: #c9184a;
+    text-shadow: 0 0 10px rgba(201,24,74,0.4);
+}
+
+@keyframes fadeInSignature {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
 
 </body>
 </html>
