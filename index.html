@@ -262,7 +262,7 @@ yesBtn.addEventListener('click', () => {
         noBtn.style.display = 'none';
 
         // Direct transition to final cinematic page (no message shown)
-        setTimeout(() => {
+        (function() {
             document.body.innerHTML = `
                 <div id="finalPage" style="
                     position:relative;
@@ -326,7 +326,7 @@ yesBtn.addEventListener('click', () => {
                 setTimeout(() => sparkle.remove(), 6000);
             }, 400);
 
-        }, 300);
+        })();
     });
             }
 
