@@ -258,17 +258,135 @@ function createPetal() {
 setInterval(createPetal, 1200);
 
 yesBtn.addEventListener('click', () => {
-    message.innerHTML = `
-        My love ❤️<br><br>
-        Choosing you was the best decision of my life.<br>
-        I promise to stand beside you in every storm,<br>
-        celebrate every joy with you,<br>
-        and love you more deeply with each passing day.<br><br>
-        You are my today, my tomorrow, and my forever. 💞
-    `;
-    message.classList.add('show');
-    launchHearts();
-});
+        // Hide "You Wish" button
+        noBtn.style.display = 'none';
+
+        // Show love message briefly
+        message.innerHTML = `
+            My love ❤️<br><br>
+            Choosing you was the best decision of my life.<br>
+            I promise to stand beside you in every storm,<br>
+            celebrate every joy with you,<br>
+            and love you more deeply with each passing day.<br><br>
+            Get ready for our forever... 💞
+        `;
+
+        message.style.animation = "fadeIn 1.5s ease-in-out";
+        message.style.fontSize = "22px";
+        message.style.lineHeight = "1.8";
+
+        // Transition to new page after 3 seconds
+        setTimeout(() => {
+            document.body.innerHTML = `
+                <div id="finalPage" style="
+                    position:relative;
+                    height:100vh;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    flex-direction:column;
+                    background: linear-gradient(to bottom right, #1a001a, #330033);
+                    color:white;
+                    text-align:center;
+                    font-family: Georgia, serif;
+                    padding:20px;
+                    overflow:hidden;
+                ">
+                    <h1 style="font-size:42px; margin-bottom:20px; color:#ffccd5;">
+                        SAPNA ❤️ Rahul
+                    </h1>
+                    <p style="font-size:22px; max-width:600px; line-height:1.8;">
+                        From this day forward, our story becomes one soul,
+                        one journey, one forever.
+                        <br><br>
+                        No more questions.
+                        Only love. Only us.
+                    </p>
+                    <div style="margin-top:40px; font-size:28px; color:#ff4d6d;">
+                        💍 She Said Yes 💍
+                    </div>
+                    <div id="zoomLove" style="
+                        margin-top:50px;
+                        font-size:36px;
+                        color:#ffffff;
+                        animation: zoomInLove 4s ease-in-out forwards;
+                    ">
+                        I Love You, SAPNA ❤️
+                    </div>
+                </div>
+
+                <style>
+                @keyframes zoomInLove {
+                    0% { transform: scale(0.5); opacity:0; }
+                    50% { transform: scale(1.2); opacity:1; }
+                    100% { transform: scale(1); }
+                }
+
+                @keyframes sparkleFall {
+                    0% { transform: translateY(-10vh); opacity:1; }
+                    100% { transform: translateY(110vh); opacity:0; }
+                }
+                </style>
+            `;
+
+            // Lock screen mode
+            document.body.style.overflow = 'hidden';
+
+            // Continue background music
+            const music = document.getElementById('bgMusic');
+            if (music) {
+                music.play().catch(()=>{});
+            }
+
+            // Heartbeat sound during zoom
+            const heartbeat = new Audio('https://www.soundjay.com/human/heartbeat-01a.mp3');
+            heartbeat.volume = 0.5;
+            setTimeout(()=>{
+                heartbeat.play().catch(()=>{});
+            },1500);
+
+            // Background cinematic zoom effect
+            const finalPage = document.getElementById('finalPage');
+            finalPage.style.backgroundSize = '100%';
+            finalPage.style.transition = 'background-size 8s ease-in-out';
+            setTimeout(()=>{
+                finalPage.style.backgroundSize = '110%';
+            },100);
+
+            // Sparkles animation
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = "✨";
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.fontSize = (Math.random() * 10 + 10) + 'px';
+                sparkle.style.animation = 'sparkleFall 5s linear forwards';
+                finalPage.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 5000);
+            }, 300);
+
+            // Fireworks burst after love zoom
+            setTimeout(()=>{
+                for(let i=0;i<30;i++){
+                    const firework = document.createElement('div');
+                    firework.innerHTML = '🎆';
+                    firework.style.position = 'absolute';
+                    firework.style.left = Math.random()*100 + 'vw';
+                    firework.style.top = Math.random()*60 + 'vh';
+                    firework.style.fontSize = (Math.random()*20+20)+'px';
+                    firework.style.opacity='0';
+                    firework.style.transition='all 1s ease';
+                    finalPage.appendChild(firework);
+                    setTimeout(()=>{
+                        firework.style.opacity='1';
+                        firework.style.transform='scale(1.5)';
+                    },50);
+                    setTimeout(()=>firework.remove(),2000);
+                }
+            },4000);
+
+        }, 3000);
+    });
 
 noBtn.addEventListener('mouseover', () => {
     const x = Math.floor(Math.random() * 100) - 50;
