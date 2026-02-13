@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --overlay: rgba(255, 255, 255, 0.85);
+            --dark-text: #590d22;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Background Image Setup */
+        .bg-image {
+            background-image: url('https://r.jina.ai/i/06079010461b4d08977227d8e8748376');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Content Box */
+        .glass-card {
+            background: var(--overlay);
+            backdrop-filter: blur(8px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+            border: 2px solid white;
+        }
+
+        h1 {
+            color: var(--primary-pink);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            height: 60px;
+        }
+
+        button {
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn {
+            background-color: var(--primary-pink);
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #ff758f;
+        }
+
+        #noBtn {
+            background-color: #f0f0f0;
+            color: #666;
+            position: absolute; /* Needed for the "runaway" effect */
+        }
+
+        #celebration {
+            display: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-pink);
+            animation: heartBeat 1s infinite;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Floating Hearts */
+        .heart-particle {
+            position: absolute;
+            color: var(--primary-pink);
+            pointer-events: none;
+            z-index: 5;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            to { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-image">
+        <div class="glass-card">
+            <div id="main-content">
+                <h1>To My Future Forever...</h1>
+                <p>You’ve already given me your "Yes" for a lifetime. But for today...</p>
+                <h3>Will you be my Valentine?</h3>
+                
+                <div class="btn-container">
+                    <button id="yesBtn" onclick="showLove()">YES!</button>
+                    <button id="noBtn" onmouseover="moveButton()">No</button>
+                </div>
+            </div>
+
+            <div id="celebration">
+                💖 I KNEW IT! 💖<br>
+                I love you more than words can say.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Make the "No" button move away
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            const card = document.querySelector('.glass-card').getBoundingClientRect();
+            
+            // Generate random positions within the screen view
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // Show celebration effect
+        function showLove() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('celebration').style.display = 'block';
+            
+            // Create heart explosion
+            for(let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
