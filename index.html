@@ -25,7 +25,7 @@ body {
     background-position: center;
 }
 
-/* Intro */
+/* Intro Screen */
 .intro {
     position: fixed;
     inset: 0;
@@ -55,6 +55,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Card */
 .card {
     background: rgba(255,255,255,0.97);
     padding: 50px 40px;
@@ -66,18 +67,12 @@ body {
     animation: fadeIn 2s ease;
 }
 
-.name-reveal {
+.name {
     font-family: 'Great Vibes', cursive;
     font-size: 48px;
     color: #ff4d6d;
     margin-bottom: 10px;
-    opacity: 0;
-    animation: nameFade 3s ease 2.5s forwards;
-}
-
-@keyframes nameFade {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+    animation: fadeIn 2s ease 1s forwards;
 }
 
 h1 { color: #a4133c; font-size: 26px; margin-bottom: 20px; }
@@ -104,29 +99,7 @@ button {
 
 #noBtn { background: #eee; color: #555; }
 
-.secret {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px;
-    font-size: 24px;
-    font-family: 'Great Vibes', cursive;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease;
-    z-index: 20;
-}
-
-.secret.show {
-    opacity: 1;
-    visibility: visible;
-}
-
+/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -145,10 +118,10 @@ button {
 </div>
 
 <div class="card">
-    <div class="name-reveal">SAPNA</div>
+    <div class="name">SAPNA</div>
     <h1>My Forever Begins With You</h1>
     <p>
-        My love, every heartbeat of mine whispers your name.
+        Every heartbeat of mine whispers your name.
         Every dream I see has you in it.
         Will you walk this journey with me forever?
     </p>
@@ -159,11 +132,6 @@ button {
     </div>
 </div>
 
-<div class="secret" id="secretMessage">
-    SAPNA ❤️<br><br>
-    I will choose you in every lifetime. 💖
-</div>
-
 <audio id="bgMusic" loop>
     <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
 </audio>
@@ -172,7 +140,6 @@ button {
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const music = document.getElementById('bgMusic');
-const secret = document.getElementById('secretMessage');
 
 // Start music on first interaction
 window.addEventListener('click', () => {
@@ -191,28 +158,50 @@ yesBtn.addEventListener('click', () => {
             justify-content:center;
             align-items:center;
             flex-direction:column;
-            background: linear-gradient(to bottom right, #1a001a, #330033);
+            background: linear-gradient(to bottom right, #200122, #6f0000);
             color:white;
             text-align:center;
             font-family: Georgia, serif;
+            padding:30px;
             overflow:hidden;
         ">
-            <h1 style="font-size: clamp(28px,6vw,42px); color:#ffccd5;">
-                SAPNA ❤️ Rahul
+
+            <h1 style="font-size: clamp(30px,6vw,48px); color:#ffd1dc;">
+                She Said Yes 💍
             </h1>
-            <div style="margin-top:20px; font-size: clamp(22px,5vw,36px); animation: zoomIn 3s ease forwards;">
-                I Love You ❤️
+
+            <div style="
+                max-width:700px;
+                font-size: clamp(18px,4vw,24px);
+                line-height:1.8;
+                margin-top:20px;
+                animation: fadeIn 2s ease forwards;
+            ">
+                SAPNA ❤️<br><br>
+
+                From this moment forward,
+                every sunrise will mean more,
+                every dream will feel closer,
+                and every heartbeat will whisper your name.<br><br>
+
+                You are my peace, my strength,
+                and my forever in this changing world.<br><br>
+
+                Today you said <b>Yes</b>,
+                but in my heart,
+                I said <b>Always</b>.
             </div>
-            <div style="margin-top:25px; font-size: clamp(18px,4vw,26px); color:#ff4d6d;">
-                💍 She Said Yes 💍
+
+            <div style="
+                margin-top:40px;
+                font-size: clamp(22px,5vw,32px);
+                color:#ff4d6d;
+            ">
+                I Choose You. In Every Lifetime. ❤️
             </div>
         </div>
 
         <style>
-        @keyframes zoomIn {
-            from { transform: scale(0.5); opacity:0; }
-            to { transform: scale(1); opacity:1; }
-        }
         @keyframes sparkleFall {
             0% { transform: translateY(-10vh); opacity:1; }
             100% { transform: translateY(110vh); opacity:0; }
@@ -222,17 +211,17 @@ yesBtn.addEventListener('click', () => {
 
     const finalPage = document.getElementById('finalPage');
 
-    // Sparkles
+    // Sparkles animation
     setInterval(() => {
         const sparkle = document.createElement('div');
         sparkle.innerHTML = "✨";
         sparkle.style.position = "absolute";
         sparkle.style.left = Math.random()*100 + "vw";
-        sparkle.style.fontSize = (Math.random()*10+10)+"px";
-        sparkle.style.animation = "sparkleFall 5s linear forwards";
+        sparkle.style.fontSize = (Math.random()*12+10)+"px";
+        sparkle.style.animation = "sparkleFall 6s linear forwards";
         finalPage.appendChild(sparkle);
-        setTimeout(()=>sparkle.remove(),5000);
-    },300);
+        setTimeout(()=>sparkle.remove(),6000);
+    },400);
 
 });
 
