@@ -258,10 +258,10 @@ function createPetal() {
 setInterval(createPetal, 1200);
 
 yesBtn.addEventListener('click', () => {
-        // Hide "You Wish" button immediately
+        // Hide "You Wish" button
         noBtn.style.display = 'none';
 
-        // Direct transition to final cinematic page
+        // Direct transition to final cinematic page (no message shown)
         setTimeout(() => {
             document.body.innerHTML = `
                 <div id="finalPage" style="
@@ -306,14 +306,28 @@ yesBtn.addEventListener('click', () => {
                 </style>
             `;
 
-            // Lock screen for mobile
             document.body.style.margin = '0';
             document.body.style.overflow = 'hidden';
 
-            // Continue background music
             const music = document.getElementById('bgMusic');
             if (music) {
                 music.play().catch(()=>{});
+            }
+
+            const finalPage = document.getElementById('finalPage');
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = "✨";
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.fontSize = (Math.random() * 8 + 8) + 'px';
+                sparkle.style.animation = 'sparkleFall 6s linear forwards';
+                finalPage.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 6000);
+            }, 400);
+
+        }, 300);
+    });
             }
 
             // Sparkles animation (mobile optimized)
